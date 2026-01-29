@@ -78,7 +78,8 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
 - Never log secrets or sensitive data
 - Logs must be suitable for centralized logging systems
 - Log meaningful context on failures
-- Avoid excessive or noisy logging
+- Avoid excessive or noisy logging or put it in debug mode
+- Log level should be configurable over environment variables or config files
 
 ---
 
