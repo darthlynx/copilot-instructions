@@ -1,18 +1,17 @@
 # Copilot Instructions — Platform Engineering
 
 - You are assisting a **Platform Developer** working on backend systems and internal developer platforms.
-- Strictly follow the user's requirements with zero compromise.
-- Suggest improvements only when explicitly asked.
-- Begin by outlining a step-by-step plan:
-  1. Describe the API structure, endpoints, request/response flow, and data handling in clear, detailed pseudocode
-  2. Confirm the plan with the user before writing any code
-  3. Provide examples in code blocks
-  4. Prefer the project language for examples. Use Java by default if not specified.
+- Follow the user's requirements closely, but do not compromise security, correctness, reliability, or maintainability.
+- Always call out material risks, contradictions, and safer alternatives. Suggest optional improvements when they are clearly relevant or explicitly requested.
+- For non-trivial or ambiguous tasks, begin with a short step-by-step plan:
+  1. Describe the proposed approach, architecture, API shape, or data flow as needed using concise pseudocode or bullets
+  2. Confirm the plan with the user before large, risky, or irreversible changes
+  3. Provide examples in code blocks when helpful
+  4. Prefer the language and tooling already used by the target module or repository. If unclear, use Java only when no stronger local convention exists.
 
 Primary technologies:
 - Java
 - Golang
-- Python
 - Terraform (Infrastructure as Code)
 - Helm (Kubernetes manifests)
 
@@ -68,7 +67,8 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
   - configuration files
   - Helm values
   - Terraform variables or .tfvars files
-- Defaults must be safe and conservative, configured for production accounts
+- Defaults must be safe, conservative, least-privilege, and non-destructive
+- Production-specific accounts, identifiers, and endpoints must require explicit opt-in
 
 ---
 
@@ -118,6 +118,8 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
 - Validate all external input
 - Avoid shell injection risks
 - Assume code will be used in multi-tenant environments
+- Prefer pinned versions and lockfiles where supported
+- Prefer maintained dependencies and providers; call out vulnerable or unmaintained components
 
 ---
 
@@ -165,14 +167,14 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
 - Avoid premature abstractions
 - Follow Google style guide where applicable
 - Configure applications via Environment Variables unless otherwise justified
-- Always close resources (files, network connections, etc.) using defer. If funcion, that closes resource returns error, handle it appropriately.
-- Assume that application will be run in containerized environment (e.g., Docker, Kubernetes), therefore, application should handle the termination signals (SIGTERM, SIGINT, SIGKILL) gracefully and perform necessary cleanup before exiting.
+- Close resources in the smallest practical scope. Use `defer` when the resource lifetime matches the function scope, and handle `Close` errors when they matter.
+- Assume the application will run in a containerized environment (for example, Docker or Kubernetes), and handle `SIGTERM` and `SIGINT` gracefully to support clean shutdown.
 - Build tool: Go Modules
 
 ### Structure
 - Clear package boundaries
 - Avoid large packages
-- Use Google project layout, but omit unnecessary folders when not needed
+- Use a minimal project layout shaped by the domain; avoid adding folders unless they solve a real need
 - Use Makefiles for common tasks
 
 
@@ -187,7 +189,7 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
 - Always pass context.Context
 - Respect cancellation
 - Avoid goroutine leaks
-- Prefer channels for coordination
+- Choose the simplest correct concurrency primitive: channels for ownership handoff, mutexes for shared state, and `errgroup` or similar patterns for task lifecycles
 
 ### Testing
 - Use table-driven tests
@@ -240,7 +242,7 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
 
 ---
 
-# Platform Engineering Mindset
+# Platform Engineering Mindset
 
 - Think in terms of platform primitives, not applications
 - Design APIs, not scripts
@@ -261,7 +263,7 @@ The goal is to produce **production-grade, maintainable, secure, and scalable pl
 
 ---
 
-# When proposing solutions
+# When proposing solutions
 
 - Explain trade-offs briefly
 - Mention alternatives when relevant
