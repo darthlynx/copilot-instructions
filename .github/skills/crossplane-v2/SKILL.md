@@ -1,5 +1,5 @@
 ---
-name: crossplane-v2-namespaced
+name: crossplane-v2
 description: Use this skill when working with Crossplane v2 APIs, namespaced composite resources, namespaced managed resources where supported, and Compositions without claims.
 ---
 
