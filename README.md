@@ -5,6 +5,8 @@ Reusable GitHub Copilot instructions and skills for platform engineering project
 > [!IMPORTANT]
 > Prefer the official documentation for GitHub Copilot and other coding agents when you need authoritative behavior, feature support, or setup guidance. Models, instruction formats, and agent capabilities evolve quickly, so this repository should be treated as a practical template, not the canonical source of truth.
 
+This repository is published under the [MIT License](LICENSE). Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## What this repository contains
 
 - `.github/copilot-instructions.md`: repository-wide, cross-cutting guidance for GitHub Copilot
@@ -12,6 +14,8 @@ Reusable GitHub Copilot instructions and skills for platform engineering project
 - `.github/agents/`: agent-specific instruction files such as the Go code review agent
 - `.github/skills/go-project`: reusable skill for Go repositories
 - `.github/skills/crossplane-v2`: reusable skill for Crossplane v2 platform APIs
+- `LICENSE`: MIT license for reuse
+- `CONTRIBUTING.md`: minimal contribution guidance for public collaboration
 
 ## How to use in a single project
 
@@ -97,3 +101,14 @@ For Claude Code, the same content can be adapted into `CLAUDE.md` plus supportin
 - Keep scripts and checklists tool-agnostic so every agent can reuse them.
 - Keep one canonical copy of each skill, then generate or adapt thin wrappers for GitHub Copilot, Codex, and Claude Code.
 - If you want true multi-agent reuse, store the durable guidance under `docs/ai/` and treat `.github/skills/`, `AGENTS.md`, and `CLAUDE.md` as agent-specific entry points.
+
+## Contributing
+
+For small public repos like this one, the contribution model is intentionally lightweight:
+
+- keep changes focused
+- preserve the split between repo-wide guidance and path-specific instructions
+- update the README when structure or usage changes
+- prefer improving existing guidance over adding overlapping files
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the short version.
