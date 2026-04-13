@@ -34,32 +34,7 @@ When the repository is Go, provide implementation and fixes in Go even if the us
 
 ## Initial repository checks
 
-Before making changes:
-1. Find the module or workspace root by locating `go.mod` and `go.work`.
-2. Inspect these files when present:
-   - `go.mod`
-   - `go.sum`
-   - `go.work`
-   - `Makefile`
-   - `.golangci.yml` or `.golangci.yaml`
-   - `README.md`
-   - CI config files
-   - `docker-compose.yml` or `compose.yaml`
-3. Check whether the project standard uses:
-   - `go test ./...`
-   - `go build ./...`
-   - `golangci-lint`
-   - `make test`
-   - `make lint`
-   - integration tests requiring containers or local services
-
-If scripts are available, use:
-- `scripts/detect.sh`
-- `scripts/fmt.sh`
-- `scripts/test.sh`
-- `scripts/lint.sh`
-- `scripts/integration-test.sh`
-- `scripts/ci-check.sh`
+Before making changes: locate the module/work root (`go.mod`/`go.work`), inspect `README.md`, CI configs, and project `Makefile` if present. Prefer project-provided scripts (look under `scripts/`) and use `examples/expected-commands.md` for the canonical command list and preferred command order.
 
 ## Working rules
 
@@ -99,25 +74,9 @@ When refactoring:
 
 Do not perform large architectural rewrites unless the user requests them.
 
-## Preferred command order
+## Preferred command order and commands
 
-When validating changes, prefer this order:
-1. format
-2. build
-3. targeted tests
-4. full unit tests
-5. integration tests if relevant
-6. lint
-
-Typical commands:
-- `go fmt ./...`
-- `go build ./...`
-- `go test ./...`
-- `go test ./path/to/pkg -run TestName`
-- `go test ./path/to/pkg -bench=. -benchmem`
-- `golangci-lint run`
-
-If the repo provides `make` targets and they are clearly the project standard, prefer them.
+See `examples/expected-commands.md` for the preferred command order and common project commands. If the repository defines `make` targets as the canonical workflow, prefer them over ad-hoc commands.
 
 ## Docker Compose and local dependencies
 
