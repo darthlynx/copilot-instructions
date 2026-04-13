@@ -1,6 +1,4 @@
----
-applyTo: "**/Chart.yaml,**/values.yaml,**/values-*.yaml,**/templates/**/*.yaml,**/templates/**/*.tpl"
----
+applyTo: "**/Chart.yaml,**/values*.yaml,**/templates/**/*.{yaml,yml,tpl}"
 
 # Helm Instructions
 

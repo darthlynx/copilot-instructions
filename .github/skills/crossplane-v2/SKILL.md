@@ -145,31 +145,17 @@ Do not hide the scope difference; make it visible in the recommendation and revi
 - Do not recommend legacy v1 patterns unless the user explicitly asks for migration guidance.
 - Call out when a suggested design depends on v1 compatibility mode rather than v2-native behavior.
 
-## Validation and review
 
-When reviewing Crossplane YAML, check for:
-- v2-native design vs legacy carryover
-- clear XR schema
-- safe defaults
-- namespace boundaries
-- correct `compositeTypeRef`
-- correct function pipeline wiring
-- correct patches and transforms
-- secret handling
-- provider config references
-- readiness and dependency ordering assumptions
-- excessive provider leakage into the XR
+See `resources/review-checklist.md` for the full review checklist used when validating Crossplane YAML and compositions.
+
+## Troubleshooting approach
+
+See `resources/troubleshooting.md` for the step-by-step troubleshooting approach and diagnostic checklist.
 - operational debuggability
 
 ## Troubleshooting approach
 
-When troubleshooting:
-1. Inspect the XR first.
-2. Inspect composed resources next.
-3. Inspect events with `kubectl describe`.
-4. Verify function pipeline inputs and outputs.
-5. Verify provider config references.
-6. Check whether the issue is schema, patching, readiness, or provider reconciliation.
+See `resources/troubleshooting.md` for the step-by-step troubleshooting approach and diagnostic checklist.
 
 ## Expected output style
 
