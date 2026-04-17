@@ -235,7 +235,7 @@ For each phase:
 
 ## Phase 8 — Review Checklist
 
-Run before closing the session. Every item gets ✅ or 🚧 (needs follow-up):
+Run before closing the session. Mark each item as **Completed** or **Needs follow-up**.
 
 **Correctness**
 - [ ] All NFRs addressed or explicitly deferred with owner
